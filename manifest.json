@@ -1,0 +1,19 @@
+{
+    "name": "pXacht Chrome Helper",
+    "description": "Supplies all required information to pXacht Deamon.",
+    "version": "0.1",
+    "background": {
+        "persistent": true,
+        "scripts": ["background.js"]
+      },
+    "manifest_version": 2,
+    "minimum_chrome_version": "46",
+    "permissions":[
+        "tabs","storage","*://*/*","webRequest","activeTab","nativeMessaging"
+    ],
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_popup": "popup.html"
+    }
+   
+  }
