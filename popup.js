@@ -34,3 +34,13 @@ var fixedURI = currentUrl.replace("https://","");
 window.open(`pxacht://${fixedURI}`,'_self')
 });
 
+const btnx = document.createElement('button');
+btnx.innerText = 'NETFLIX';
+btnx.className = 'urlButton';
+var divee = document.getElementById("divc1");
+divee.appendChild(btnx);
+btnx.classList.add('button');
+btnx.addEventListener('click',()=>{
+var fixedURI = currentUrl.replace("https://","");
+window.open(`pxacht://${fixedURI}`,'_self')
+});

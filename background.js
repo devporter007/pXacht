@@ -1,9 +1,4 @@
-// Copyright (c) 2012 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
 var currentTab = null;
-
-// Set batch mode to false when startin extension
 chrome.storage.sync.set({batchMode: false}, function() {});
 chrome.storage.sync.set({tabs: {}}, function() {});
 
@@ -31,9 +26,28 @@ var saveMpd = function(details) {
       let tabId = details.tabId;
       if(data.batchMode) tabs[tabId] = true;
       else tabs = {[tabId]: true};
-      
+      chrome.storage.sync.set({
+        tabs: tabs
+    }, function() {
+        updateBadge();
+    });
     });
   }
+};
+
+function updateBadge() {
+  chrome.storage.sync.get(['tabs', 'batchMode'], function(data) {
+      if (data.tabs[currentTab]) {
+          chrome.browserAction.setBadgeText({
+              text: 'MPD'
+          });
+      }
+      else {
+          chrome.browserAction.setBadgeText({
+              text: 'URL'
+          });
+      }
+  });
 };
 
 
@@ -46,6 +60,11 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
     chrome.storage.sync.get('tabs', function(data) {
       let tabs = data.tabs;
       tabs[tabId] = false;
+      chrome.storage.sync.set({
+        tabs: tabs
+    }, function() {
+        updateBadge();
+    });
     });
   }
 });
@@ -53,5 +72,6 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 // Listen for changing tabs
 chrome.tabs.onActivated.addListener(function(activeInfo) {
   currentTab = activeInfo.tabId;
+  updateBadge();
 });
 
