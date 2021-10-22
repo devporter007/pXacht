@@ -9,7 +9,7 @@
     "manifest_version": 2,
     "minimum_chrome_version": "46",
     "permissions":[
-        "tabs","storage","*://*/*","webRequest","activeTab","nativeMessaging"
+        "tabs","storage","*://*/*","webRequest","activeTab"
     ],
     "browser_action": {
         "default_icon": "icon.png",

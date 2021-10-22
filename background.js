@@ -13,9 +13,8 @@ function saveURL(url){
   });
   chrome.storage.sync.set({lastUrl: url}, function() {});
 }
-var ere = {
-  ur : ""
-}
+
+// MPD
 var saveMpd = function(details) {
   var url = details.url;
   if(url.includes('.mpd')){
@@ -34,6 +33,9 @@ var saveMpd = function(details) {
     });
   }
 };
+/*if(url.includes('nflxvideo.net/range/0-20951?o=1')){
+    
+}*/
 
 function updateBadge() {
   chrome.storage.sync.get(['tabs', 'batchMode'], function(data) {
@@ -53,7 +55,6 @@ function updateBadge() {
 
 
 chrome.webRequest.onBeforeRequest.addListener(saveMpd, {urls: ["<all_urls>"]}, []);
-
 // Listen for reloading pages
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   if(changeInfo.status == "loading"){
@@ -74,4 +75,3 @@ chrome.tabs.onActivated.addListener(function(activeInfo) {
   currentTab = activeInfo.tabId;
   updateBadge();
 });
-
