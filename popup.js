@@ -62,8 +62,8 @@ divee.appendChild(btnx);
 btnx.classList.add('button');
 btnx.addEventListener('click',()=>{
 var removablePart = getStringBetween(sss, 'a.nflxvideo.net/', '?o=1&')
-finalURL = sss.replace(removablePart + "?","");
-console.log(finalURL);
+finalURL = sss.replace(removablePart,"?");
+// As of now it can easily grab the video url but no audio
 var fixedURI = currentUrl.replace("https://","");
 //window.open(`pxacht://${fixedURI}`,'_self')
 });
