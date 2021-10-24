@@ -1,6 +1,6 @@
 {
     "name": "pXacht Chrome Helper",
-    "description": "Supplies all required information to pXacht Deamon.",
+    "description": "Supplies all required information to kXacht.",
     "version": "0.1",
     "background": {
         "persistent": true,

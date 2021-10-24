@@ -37,11 +37,20 @@ divee.appendChild(btn);
 btn.classList.add('button');
 btn.addEventListener('click',()=>{
 var fixedURI = currentUrl.replace("https://","");
+if(fixedURI.includes("hotstar")){
+fixedURI = fixedURI+"~~FLAG_hotstar=True";
+console.log(fixedURI);
+}
 window.open(`pxacht://${fixedURI}`,'_self')
 });
 
 
 
+function getStringBetween(str, start, end) {
+    const result = str.match(new RegExp(start + "(.*)" + end));
+  
+    return result[1];
+  }
 
 
 // BUTTON FOR NETFLIX URLS(WIP)
@@ -52,10 +61,9 @@ var divee = document.getElementById("divc1");
 divee.appendChild(btnx);
 btnx.classList.add('button');
 btnx.addEventListener('click',()=>{
-//LOGIC NOT DEFINED(WIP)
-properURL = nfu.replace('range/0-20951','');
-console.log(properURL);
-console.log(properURL);
+var removablePart = getStringBetween(sss, 'a.nflxvideo.net/', '?o=1&')
+finalURL = sss.replace(removablePart + "?","");
+console.log(finalURL);
 var fixedURI = currentUrl.replace("https://","");
 //window.open(`pxacht://${fixedURI}`,'_self')
 });

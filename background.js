@@ -1,5 +1,5 @@
 var currentTab = null;
-chrome.storage.sync.set({batchMode: false}, function() {});
+chrome.storage.sync.set({batchMode: true}, function() {});
 chrome.storage.sync.set({tabs: {}}, function() {});
 
 function saveURL(url){
@@ -17,7 +17,7 @@ function saveURL(url){
 // MPD
 var saveMpd = function(details) {
   var url = details.url;
-  if(url.includes('.mpd')){
+  if(url.includes('.mpd') || url.includes('nflxvideo.net/range/0-')){
     saveURL(url);
     //Save the url for this tab
     chrome.storage.sync.get(['tabs', 'batchMode'], function(data) {
@@ -51,7 +51,6 @@ function updateBadge() {
       }
   });
 };
-
 
 
 chrome.webRequest.onBeforeRequest.addListener(saveMpd, {urls: ["<all_urls>"]}, []);
