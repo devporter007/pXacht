@@ -65,5 +65,6 @@ var removablePart = getStringBetween(sss, 'a.nflxvideo.net/', '?o=1&')
 finalURL = sss.replace(removablePart,"?");
 // As of now it can easily grab the video url but no audio
 var fixedURI = currentUrl.replace("https://","");
-//window.open(`pxacht://${fixedURI}`,'_self')
+// __NETFLIX__equalsTrueQQWSS -- FLAG FOR NETFLIX, i aint making new url protocol just to support netflix
+window.open(`pxacht://${fixedURI}__NETFLIX__equalsTrueQQWSS`,'_self')
 });
